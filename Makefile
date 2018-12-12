@@ -1,7 +1,17 @@
 prog_port = $(shell ls /dev/tty.usbserial-*)
 
-all: syntax slavesyntax
+all: syntax slavesyntax bluesyntax
 
+bluesyntax: bluepreprocess
+	tr -d '\r' < compiled.bas > ./compilers/compiled.bas
+	./compilers/c/picaxe28x2 -s ./compilers/compiled.bas
+
+bluepreprocess: include/40X2Symbols.bas include/sensorRoutines.bas
+	./picaxepreprocess.py -i bluebot.bas
+
+blue: bluepreprocess
+	tr -d '\r' < compiled.bas > ./compilers/compiled.bas
+	./compilers/c/picaxe28x2 -c$(prog_port) ./compilers/compiled.bas
 
 syntax: preprocess
 	tr -d '\r' < compiled.bas > ./compilers/compiled.bas

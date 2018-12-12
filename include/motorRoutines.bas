@@ -26,16 +26,16 @@ return
 
 goforward:
 	'sertxd("Going Forward",cr,lf)
-	high LmotorDir1
-	low LmotorDir2
-	high RmotorDir1
-	low RmotorDir2
+	low LmotorDir1
+	high LmotorDir2
+	low RmotorDir1
+	high RmotorDir2
 return
 
 steerright:
 	'sertxd("Steering Right (and forward)",cr,lf)
-	high LmotorDir1
-	low LmotorDir2
+	low LmotorDir1
+	high LmotorDir2
 	low RmotorDir1
 	low RmotorDir2
 return
@@ -44,8 +44,8 @@ steerleft:
 	'sertxd("Steering Left (and forward)",cr,lf)
 	low LmotorDir1
 	low LmotorDir2
-	high RmotorDir1
-	low RmotorDir2
+	low RmotorDir1
+	high RmotorDir2
 return
 
 turnright:
@@ -66,10 +66,11 @@ return
 
 gobackward:
 	'sertxd("Backing Up",cr,lf)
-	low LmotorDir1
-	high LmotorDir2
-	low RmotorDir1
-	high RmotorDir2
+	high LmotorDir1
+	low LmotorDir2
+	high RmotorDir1
+	low RmotorDir2
+
 return
 
 powerstop:
