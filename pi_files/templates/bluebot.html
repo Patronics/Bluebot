@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>bluebot</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+<meta name="viewport" content="user-scalable = yes">	
+	
+</head>
+  <body>
+    <h1>BlueBot Control Panel</h1>
+	<script type="text/javascript" src="{{url_for('static', filename='socket.io.js')}}"></script>
+	<script type="text/javascript" charset="utf-8">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        socket.on('connect', function() {
+	    //socket.emit('message',"speed:0, dir:0");
+            socket.emit('message', "connected");
+
+        });
+        socket.on('message', function(msg){
+            console.log("message received clientside");
+        });
+	function go(dir) {
+		speed=document.getElementById("speed").value;
+		console.log("going speed", speed, "in direction", dir);
+		socket.emit('go',speed, dir);
+	}	
+	</script>
+	<form action=/go>
+		<table>
+<tr>
+	<td><button type="button" onclick="go(6)" name="direction" value="6"> Steer Left </button></td>
+	<td><button type="button" onclick="go(1)" name="direction" value="1"> Forward </button></td>
+	<td><button type="button" onclick="go(5)" name="direction" value="5"> Steer Right </button></td>
+</tr>
+<tr>    <td> <button type="button" onclick="go(4)" name="direction" value="4"> Turn Left </button></td>  
+	<td> <button type="button" onclick="go(0)" name="direction" value="0" checked> Stop </button></td>
+	<td> <button type="button" onclick="go(3)" name="direction" value="3"> Turn Right </button></td>
+</tr>	
+<tr><td></td><td><button type="button" onclick="go(2)" name="direction" value="2"> Backward </button></td>
+</table>
+		<br>
+		0 <input type="range" id="speed" name="speed" value="{{setspeed}}" min="0" max="200"> 200 Speed
+		</table>
+	</form>
+    <img id="bg" src="http://{{ hostname }}:8888/?action=stream&randomtime={{ time }}" style="background-image: url({{url_for('static', filename='loading.png') }}); background-repeat: space;">
+<br>
+	High Voltage input: <output>{{hv}}</output>V   (<output>{{overlimit}}{{hvcell}}</output>V per cell)<br>
+	5 Volt input: <output>{{lv}}</output>V
+{% if "mjpgdown" in mon %}
+<a href="/restart_mjpg"> <button type='button'> start video stream </a>
+{% endif %}
+<footer>
+
+<a href="/settings"> settings </a>
+</footer>
+  </body>
+</html>

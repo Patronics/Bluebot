@@ -1,0 +1,11 @@
+<html>
+  <head>
+    <title>bleubot stream</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">  
+</head>
+  <body>
+    <h1>Bluebot live video feed</h1>
+    <img id="bg" width="640" height="480" src="http://{{ hostname }}:8888/?action=stream" style="background-image: url({{url_for('static', filename='horselogo.png') }}); background-repeat: space;">
+
+  </body>
+</html>
