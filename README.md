@@ -1,7 +1,3 @@
-# SierraRoboticsFireFighter
+# Bluebot
 
-This is a project by Sierra College Robotics Club to make a firefighting robot, which was entered in RoboGames 2018, where it won 2nd place in the competition. 
-
-It is under continued development, to prepare it for future competitions and improve its performance and reliability. 
-
-The revisions in progress as of Fall 2018 include designing a purpose-built PCB, a major hardware upgrade, and a comprehensive overhaul of the code. This is a work in progress, and expected to continue into spring 2019.
+This is a project based on my work for [Sierra College's Robotics Club's Firefighter project](https://github.com/Patronics/SierraRoboticsFireFighter), to allow a project with a firefighter-like form factor, but direct remote control with a Raspberry Pi Zero W, using Flask for the web server, and communicating to the PICAXE chip over i2c. 
